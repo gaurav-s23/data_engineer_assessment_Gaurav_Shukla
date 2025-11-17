@@ -1,0 +1,20 @@
+
+# PYTHON CACHE FILES
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VIRTUAL ENVIRONMENTS
+
+.venv/
+venv/
+env/
+ENV/
+
+# ENVIRONMENT VARIABLES / SECRETS
+
+.env
+.env.*
+!.env.example
+
