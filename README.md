@@ -160,6 +160,9 @@ dotenv	Load env vars
 cryptography	Required for caching_sha2_password auth
 MySQL (Docker)	Data warehouse
 Docker Compose	Start DB instantly
+
+
+
 📁 6. Project Structure
 project-root/
 │
@@ -179,6 +182,7 @@ project-root/
 ├── env.example
 ├── .gitignore
 └── README.md
+
 
 🧬 7. ETL Logic (Explain Like I'm 5)
 Extract
@@ -208,6 +212,9 @@ Inserts into property table → fetches new id
 All child rows reference property_id
 
 Commit after each record for safety
+
+
+
 
 🧱 8. Database Schema (DDL)
 
@@ -250,6 +257,8 @@ SELECT 'Valuation', COUNT(*) FROM Valuation UNION ALL
 SELECT 'HOA', COUNT(*) FROM HOA UNION ALL
 SELECT 'Taxes', COUNT(*) FROM Taxes;
 
+
+
 🔁 11. Reload Fresh ETL
 SET FOREIGN_KEY_CHECKS=0;
 TRUNCATE TABLE Leads;
@@ -260,6 +269,9 @@ TRUNCATE TABLE Rehab;
 TRUNCATE TABLE Taxes;
 TRUNCATE TABLE property;
 SET FOREIGN_KEY_CHECKS=1;
+
+
+
 
 🚀 12. Performance
 
