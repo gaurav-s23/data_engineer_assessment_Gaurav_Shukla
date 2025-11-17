@@ -6,13 +6,26 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DB_USER = os.getenv('DB_USER', 'db_user')
-DB_PASS = os.getenv('DB_PASS', '6equj5_db_user')
-DB_HOST = os.getenv('DB_HOST', '127.0.0.1')
-DB_PORT = os.getenv('DB_PORT', '3306')
-DB_NAME = os.getenv('DB_NAME', 'home_db')
+# NO DEFAULT PASSWORDS — ALL FROM ENV ONLY
+DB_USER = os.getenv('DB_USER')
+DB_PASS = os.getenv('DB_PASS')
+DB_HOST = os.getenv('DB_HOST')
+DB_PORT = os.getenv('DB_PORT')
+DB_NAME = os.getenv('DB_NAME')
 
-DATABASE_URL = f'mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4'
+# Check missing vars (security)
+missing = [k for k, v in {
+    "DB_USER": DB_USER,
+    "DB_PASS": DB_PASS,
+    "DB_HOST": DB_HOST,
+    "DB_PORT": DB_PORT,
+    "DB_NAME": DB_NAME
+}.items() if not v]
+
+if missing:
+    raise Exception(f"❌ Missing environment variables: {missing}. Please set them in .env")
+
+DATABASE_URL = f"mysql+pymysql://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}?charset=utf8mb4"
 
 engine = None
 SessionLocal = None
